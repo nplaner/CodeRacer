@@ -32,8 +32,16 @@ class App extends Component {
         return (
         <div className='containers'>
 
+<<<<<<< HEAD
             < LoginContainer />
         
+=======
+            {/* < LoginContainer /> */}
+              
+            < MainContainer />
+        
+          
+>>>>>>> 660dcd7507d5ebc75f0bffc8d57b559472a5bf4e
         </div>
       )}
     }
