@@ -10,10 +10,12 @@ const sessionController = require('./controllers/sessionController')
 const cookieController = require('./controllers/cookieController')
 const PORT = 3000;
 const apiRouter = require('./routes/api')
+// const userRouter = require('.routes/user')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieparser());
 
+//redirect to certain route if NODE_ENV === development
 
 
 if(process.env.NODE_ENV === 'production'){
@@ -31,6 +33,7 @@ if(process.env.NODE_ENV === 'production'){
   });
 }
 
+// app.use('/user', userRouter)
 app.use('/api', apiRouter)
 
 app.use('*',(req, res, next) => {
