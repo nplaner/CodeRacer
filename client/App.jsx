@@ -1,50 +1,81 @@
 import React, { Component, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import LoginContainer from './container/loginContainer.jsx';
 import MainContainer from './container/MainContainer.jsx'
 
-class App extends Component {
-    constructor(props) {
-        super (props);
-        this.state = {
-          isLoggedIn: false
-        }
-    }
+// class App extends Component {
+//     constructor(props) {
+//         super (props);
+//         this.state = {
+//           isLoggedIn: false
+//         }
+//     }
 
-    componentDidMount() {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          isLoggedIn: true,
-        });
-      });
-  }
-    render() {
-      if (this.state.isLoggedIn) {
-        return (
-          <div className='containers'>
-            
-            < MainContainer />
-      
-          </div>
-        )
-      } else {
-        return (
-        <div className='containers'>
+// //     componentDidMount() {
+// //       fetch('/verify')
+// //         .then(res => {
+// //           if (res.status === 200)
+// //           {
+// //             console.log("WE GOT HERE and are setting the state")
+// //             this.setState({ isLoggedIn: true })
+// //             console.log("THIS IS THE STATE", this.state)
+// //           } 
+// //         })
+// //     }
+//     render() {
+//         return (
+//           <div className='containers'>
+//          <Router>
+//             <ul>
+//              <li><Link to = {'/'}> Login </Link></li>
+//              <li><Link to = {'/'}> Main Page </Link></li>
+//              </ul>
+//            <Switch>
+//              <Route path = '/' component = {LoginContainer} />
+//              <Route path = '/main' component = {MainContainer} />
+//            </Switch>
+//          </Router>    
+//           </div>
+//         )
+//       } 
+//     }
 
-<<<<<<< HEAD
-            < LoginContainer />
+
+
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    fetch('/verify')
+    .then(res => {
+      if (res.status === 200)
+      {
+        console.log("WE GOT HERE and are setting the state")
+        setIsLoggedIn(loggedIn => loggedIn = true)
+        console.log("THIS IS THE STATE", isLoggedIn) 
+      } 
+      else console.log("we failed to verify the JWT")
+    })
+  })
+
+
+  if (isLoggedIn) {
+    return (
+      <div className='containers'>
         
-=======
-            {/* < LoginContainer /> */}
-              
-            < MainContainer />
-        
-          
->>>>>>> 660dcd7507d5ebc75f0bffc8d57b559472a5bf4e
-        </div>
-      )}
-    }
+        < MainContainer />
+  
+      </div>
+    )
+  } else {
+    return (
+    <div className='containers'>
+
+      < LoginContainer />
+    
+    </div>
+  )}
 }
 
 export default App;
