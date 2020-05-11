@@ -37,6 +37,11 @@ app.use('*',(req, res, next) => {
     res.status(404).send('YOU TRIED A NON EXISTENT PATH')
 })
 
+app.post('/verify', sessionController.verify, (req, res) => {
+    res.status(200).json(res.locals.verifiedjwt)
+  }
+)
+
 app.use(function(err, req, res, next) {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
